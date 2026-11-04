@@ -13,8 +13,9 @@
 
 SQL의 TIMESTAMP를 논리 모델의 일시 속성에 대응시켰다. PostgreSQL용 초기 스키마 V1과 같은 물리명을 사용한다. 법정 휴가 한도·근무일 환산·PM 적격성·동료 자기 평가 금지·같은 프로젝트/소유자 검증은 정의서 및 앱 트랜잭션 규칙을 함께 참조한다.
 
-도면 생성은 로컬 Python·SVG/XML·Pillow만 사용했고 외부로 모델을 전송하지 않았다. DA# 모델 파일은 이 폴더의 도면과 별도로 관리한다.
+도면은 로컬 Python·SVG/XML·Pillow로 생성했다. DA# 모델 파일과 draw.io·SVG·PNG는 같은 폴더에 제공한다.
+
 # DA# 파일 확인 범위
 
-`SI_통합_ERD.damx`는 DA# 자체 API로 갱신한 논리 모델입니다. 20개 루트, 5개 하위유형, 26개 일반 관계를 반영했습니다. DA# API의 `KeyGroup.Unique`는 설정 후에도 `false`를 반환하므로 DA# 파일만으로 유일 제약 활성화를 확인할 수 없습니다. 유일성은 Flyway DDL의 `UNIQUE`와 DB 테스트를 기준으로 확인하며, 자세한 결과는 [native 검증 기록](../model/native-audit.md)에 있습니다. 화면 배치 검수본은 아래 draw.io·SVG·PNG입니다.
+`SI_통합_ERD.damx`는 DA# 자체 API로 갱신한 논리 모델입니다. 20개 루트, 5개 하위유형, 26개 일반 관계를 반영했습니다. DA# API의 `KeyGroup.Unique`는 설정 후에도 `false`를 반환하므로 DA# 파일만으로 유일 제약 활성화를 확인할 수 없습니다. 유일성은 Flyway DDL의 `UNIQUE`와 DB 테스트를 기준으로 확인하며, 자세한 결과는 [native 검증 기록](../model/native-audit.md)에 있습니다. 화면 배치 검수본은 위 draw.io·SVG·PNG입니다.
 

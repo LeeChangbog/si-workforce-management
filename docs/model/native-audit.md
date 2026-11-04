@@ -41,6 +41,10 @@
 |---|---|---|
 | H2 PostgreSQL 모드 + Flyway V1 | `SchemaIntegrationTest` 7개, 실패 0, 오류 0 | 전체 25개 테이블 존재, 부모 없는 프로젝트/개발직원 FK 거부, 로그인 ID 및 동일 직원-프로젝트 참여 중복 거부, 부여분 -1/0 거부, 평가상세의 서로 다른 항목 허용 및 동일 복합키 거부, 대기 휴가의 처리자 NULL 허용 및 처리자 없는 승인 거부 |
 | Spring Boot 애플리케이션 컨텍스트 | `WorkforceApplicationTests` 1개, 실패 0, 오류 0 | 마이그레이션을 포함한 애플리케이션 기동 |
-| PostgreSQL 17 | CI 실행 후 별도 확인 예정 | H2 실행만으로 PostgreSQL 실행까지 통과했다고 주장하지 않음 |
+| PostgreSQL 17 + Java 21 | GitHub Actions 실제 실행 통과 | PostgreSQL 17 서비스에서 prod 프로필·Flyway 기동, `/actuator/health`의 `UP`, 홈페이지 `GET /`의 정상 HTML 응답 |
 
 총 8개 테스트가 통과했다. 총괄 에이전트의 `test bootJar` 실행도 성공했다. 이 결과는 실제 DB의 PK/FK/UNIQUE/CHECK 거부 사례를 입증하며 native COM의 `Unique` 보고 현상을 해소하거나 미구현 업무 규칙을 검증한 결과는 아니다.
+
+원격 결과는 [GitHub Actions 실행 41782286835](https://github.com/LeeChangbog/si-workforce-management/actions/runs/41782286835)와 해당 실행의 공개 jobs API를 검증 담당이 직접 조회하여 재확인했다. `Verify database schema and build`와 `Verify PostgreSQL startup and HTTP`가 모두 success이며, 컨테이너 정리까지 완료되어 전체 `test` 작업도 success이다. 워크플로는 `postgres:17`과 Java 21을 사용하고, 프로덕션 데이터소스 환경변수로 앱을 시작한 뒤 health `UP`와 홈페이지 HTML 응답을 실제 HTTP 요청으로 검사한다.
+
+PostgreSQL CI는 실제 PostgreSQL에서의 마이그레이션·기동·조회 경로를 검증한다. 위 7개 무결성 거부 사례 테스트의 실행 DB는 H2이므로, 이들 모두를 PostgreSQL에서도 별도 실행한 것으로 확대해서 해석하지 않는다.
