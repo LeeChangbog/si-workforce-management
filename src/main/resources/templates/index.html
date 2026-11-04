@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SI 사원·프로젝트·평가·휴가의 등록 현황과 프로젝트 목록을 확인하는 조회 화면입니다.">
+    <title>업무 현황 | SI 업무 관리</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 이동</a>
+<header class="site-header">
+    <div class="page-shell header-content">
+        <span class="brand"><span class="brand-mark" aria-hidden="true">SI</span> 업무 관리</span>
+        <a class="header-link" href="#projects">프로젝트 목록 <span aria-hidden="true">↗</span></a>
+    </div>
+</header>
+
+<main id="main" class="page-shell">
+    <section class="page-intro" aria-labelledby="page-title">
+        <p class="eyebrow">WORKFORCE OVERVIEW</p>
+        <div class="title-line">
+            <h1 id="page-title">업무 현황</h1>
+            <span class="scope-badge">조회 화면</span>
+        </div>
+        <p class="intro-description">등록된 업무 데이터를 확인하고, 프로젝트와 발주처 현황을 살펴보세요.</p>
+    </section>
+
+    <section class="metrics-grid" aria-label="전체 등록 현황">
+        <article class="metric-card">
+            <h2>사원</h2>
+            <p class="metric-value"><span th:text="${dashboard.summary.employeeCount}">0</span><span class="metric-unit">명</span></p>
+            <p class="metric-description">개발·비개발 사원 전체</p>
+        </article>
+        <article class="metric-card">
+            <h2>프로젝트</h2>
+            <p class="metric-value"><span th:text="${dashboard.summary.projectCount}">0</span><span class="metric-unit">개</span></p>
+            <p class="metric-description">모든 상태의 프로젝트</p>
+        </article>
+        <article class="metric-card">
+            <h2>프로젝트 평가</h2>
+            <p class="metric-value"><span th:text="${dashboard.summary.evaluationCount}">0</span><span class="metric-unit">건</span></p>
+            <p class="metric-description">작성 중·완료 평가 전체</p>
+        </article>
+        <article class="metric-card">
+            <h2>휴가 신청</h2>
+            <p class="metric-value"><span th:text="${dashboard.summary.leaveRequestCount}">0</span><span class="metric-unit">건</span></p>
+            <p class="metric-description">승인·반려·취소를 포함한 전체 신청</p>
+        </article>
+    </section>
+
+    <section id="projects" class="content-panel" aria-labelledby="projects-title">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">PROJECTS</p>
+                <h2 id="projects-title">프로젝트와 발주처</h2>
+            </div>
+            <p class="section-note">착수일이 최근인 순서 · 최대 20개</p>
+        </div>
+
+        <div class="empty-state" th:if="${dashboard.projects.isEmpty()}">
+            <span class="empty-symbol" aria-hidden="true">↗</span>
+            <h3>등록된 프로젝트가 없습니다</h3>
+            <p>프로젝트가 등록되면 발주처, 기간, 상태가 이곳에 표시됩니다.</p>
+        </div>
+
+        <div class="table-container" th:unless="${dashboard.projects.isEmpty()}">
+            <table>
+                <caption class="sr-only">착수일이 최근인 프로젝트 최대 20개의 발주처, 착수일, 종료일 및 상태</caption>
+                <thead>
+                <tr>
+                    <th scope="col">프로젝트</th>
+                    <th scope="col">발주처</th>
+                    <th scope="col">착수일</th>
+                    <th scope="col">종료일</th>
+                    <th scope="col">상태</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="project : ${dashboard.projects}">
+                    <th scope="row" class="project-name" th:text="${project.projectName}">프로젝트명</th>
+                    <td th:text="${project.clientName}">발주처명</td>
+                    <td class="date-cell" th:text="${project.startOn}">2026-01-01</td>
+                    <td class="date-cell" th:text="${project.endOn != null ? project.endOn : '미정'}">미정</td>
+                    <td><span class="status-pill" th:classappend="${project.status == 'IN_PROGRESS' ? 'status-active' : (project.status == 'COMPLETED' ? 'status-completed' : '')}" th:text="${project.statusLabel()}">예정</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="scope-panel" aria-labelledby="scope-title">
+        <div>
+            <p class="eyebrow">PROJECT SCOPE</p>
+            <h2 id="scope-title">현재 제공 범위</h2>
+            <p>이 화면은 전체 등록 건수와 프로젝트·발주처 목록을 조회합니다.</p>
+        </div>
+        <div class="scope-next">
+            <h3>후속 개발</h3>
+            <p>회원가입·권한 관리, 사원 및 투입 이력 관리, 평가 작성, 휴가 신청·승인 기능은 다음 단계에서 구현합니다.</p>
+        </div>
+    </section>
+</main>
+
+<footer class="page-shell site-footer">데이터베이스설계 팀 프로젝트 · SI 업무 관리</footer>
+</body>
+</html>
