@@ -55,3 +55,15 @@ jobs:
           done
           cat application-ci.log
           exit 1
+      - name: Verify competition demo and report on PostgreSQL
+        env:
+          POSTGRES_CONTAINER: ${{ job.services.postgres.id }}
+        run: |
+          docker exec -i "$POSTGRES_CONTAINER" psql -U ci_user -d workforce -v ON_ERROR_STOP=1 --single-transaction < src/main/resources/db/demo/client_competition_demo.sql
+          docker exec -i "$POSTGRES_CONTAINER" psql -U ci_user -d workforce -v ON_ERROR_STOP=1 --tuples-only --no-align --field-separator='|' < src/main/resources/db/queries/client_competition_violations.sql > competition-actual.txt
+          cat > competition-expected.txt <<'EXPECTED'
+          COI001|가상개발자01|A은행|A은행 차세대|2026-03-01|2026-03-31|B은행|B은행 모바일|2026-03-15|2026-04-15|2026-03-15|2026-03-31
+          COI002|가상개발자02|C보험|C보험 청구|2026-05-01|2026-05-10|D보험|D보험 계약|2026-05-10|2026-05-20|2026-05-10|2026-05-10
+          COI003|가상개발자03|E물류|E물류 배송|2026-06-20|2026-06-30|F물류|F물류 창고|2026-06-25|2026-07-05|2026-06-25|2026-06-30
+          EXPECTED
+          diff -u competition-expected.txt competition-actual.txt

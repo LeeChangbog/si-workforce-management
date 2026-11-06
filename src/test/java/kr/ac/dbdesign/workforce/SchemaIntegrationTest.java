@@ -37,9 +37,10 @@ class SchemaIntegrationTest {
                 where lower(table_schema) = 'public'
                 """, String.class);
 
-        assertThat(tables).containsAll(Set.of(
+        assertThat(tables.stream().filter(name -> !name.equals("flyway_schema_history")).toList())
+                .containsExactlyInAnyOrderElementsOf(Set.of(
                 "employee", "developer", "non_developer", "access_role", "employee_role",
-                "client", "client_contact", "project", "project_participation", "job_role",
+                "client", "client_contact", "client_competition", "project", "project_participation", "job_role",
                 "assignment_history", "skill", "employee_skill", "external_career",
                 "project_evaluation", "customer_evaluation", "pm_evaluation", "peer_evaluation",
                 "evaluation_item", "evaluation_detail", "leave_type", "leave_policy",

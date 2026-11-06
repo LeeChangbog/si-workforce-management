@@ -55,6 +55,11 @@ for name,node in N.items():
     for a in node['fields']:
         a['nullable']=a['name'] in S['nullable_attributes'].get(name,[])
         a['type']=TABLES.get(node['physical'],{}).get(a['col'],'')
+        # Additive extensions carry precise physical metadata independently of SQL generation order.
+        metadata=next((m for m in S.get('entity_metadata',{}).get(name,{}).get('columns',[]) if m['physical_name']==a['col']),None)
+        if metadata:
+            a['nullable']=metadata['nullable']
+            a['type']=metadata['data_type']
     node['fields'].sort(key=lambda a:(not a['pk'],not a['fk']))
 COLORS={'staff':('#e8f1ff','#315d92'),'evaluation':('#f0eaff','#70519b'),'leave':('#e5f5ee','#34735b')}
 GRID=20
@@ -66,17 +71,17 @@ def pos_grid(names, pitch_x=660, pitch_y=620):
 PAGES=[
  dict(key='00_overview',title='통합 ERD 개요',overview=True,width=4260,height=2740,
       positions=pos_grid([
-       ('권한',0,0),('사원권한',1,0),('사원',2,0),('발주처',4,0),('고객담당자',5,0),
+       ('권한',0,0),('사원권한',1,0),('사원',2,0),('발주처경쟁관계',3,0),('발주처',4,0),('고객담당자',5,0),
        ('기술',0,1),('직원보유기술',1,1),('개발직원',2,1),('비개발직원',3,1),('프로젝트',4,1),
        ('외부경력이력',1,2),('프로젝트참여',2,2),('직무수행이력',3,2),('직무',4,2),
        ('휴가종류',0,3),('휴가정책',1,3),('휴가신청',2,3),('프로젝트평가',3,3),('평가항목',4,3),('평가상세',5,3),
        ('연차부여내역',1,4),('연차사용내역',2,4),('고객평가',3,4),('PM평가',4,4),('동료평가',5,4)],660,480),
-      notes=['루트 엔터티 20개 + 하위 유형 5개 / 일반 관계 26개 + 상속 5개. 개요에는 PK·FK만 표시합니다.',
+      notes=['루트 엔터티 21개 + 하위 유형 5개 / 일반 관계 28개 + 상속 5개. 개요는 PK·FK, 신규 경쟁관계는 전체 속성·CHECK를 표시합니다.',
              '사원 DEV/NONDEV, 평가 CUSTOMER/PM/PEER는 각각 완전배타입니다. 상속별 1 : 0..1, 각 상위 레코드는 정확히 한 하위 유형을 가집니다.']),
  dict(key='01_staff_project',title='직원 · 프로젝트 · 기술',overview=False,width=2680,height=2700,
       positions=pos_grid([('권한',0,0),('사원권한',1,0),('사원',2,0),('비개발직원',3,0),
          ('기술',0,1),('직원보유기술',1,1),('개발직원',2,1),('외부경력이력',3,1),
-         ('발주처',0,2),('프로젝트',1,2),('프로젝트참여',2,2),('직무수행이력',3,2),('고객담당자',0,3),('직무',2,3)]),
+         ('발주처',0,2),('프로젝트',1,2),('프로젝트참여',2,2),('직무수행이력',3,2),('고객담당자',0,3),('발주처경쟁관계',1,3),('직무',2,3)]),
       notes=['사원 유형은 DEV / NONDEV 중 정확히 하나입니다. 개발직원만 프로젝트참여·기술·외부경력을 가집니다.',
              'UNIQUE: 로그인ID, (사번·권한번호), (프로젝트번호·참여사번), (사번·기술번호). 실제 투입·직무와 과거 시점은 직무수행이력으로 조회합니다.']),
  dict(key='02_evaluation',title='프로젝트 평가 · 고객 의뢰 및 보고',overview=False,width=2020,height=2740,
@@ -93,13 +98,18 @@ PAGES=[
 ]
 
 def field_lines(page,node):
-    fs=[a for a in node['fields'] if not page['overview'] or a['pk'] or a['fk']]
+    competition=node['physical']=='CLIENT_COMPETITION'
+    fs=[a for a in node['fields'] if not page['overview'] or competition or a['pk'] or a['fk']]
     result=[]
     for a in fs:
         key='PK/FK' if a['pk'] and a['fk'] else 'PK' if a['pk'] else 'FK' if a['fk'] else '·'
-        nullable=' [NULL]' if a['nullable'] else ''
-        typ='' if page['overview'] else ' : '+a['type'].lower()
+        nullable=' [NULL]' if a['nullable'] else (' [NN]' if competition else '')
+        typ='' if page['overview'] and not competition else ' : '+a['type'].lower()
         result.append(f"{key}  {a['name']}{typ}{nullable}")
+    if competition:
+        result.extend(['CHECK CLIENT_ID_A < CLIENT_ID_B',
+                       'CHECK RELEASED_ON IS NULL OR',
+                       '   RELEASED_ON >= REGISTERED_ON'])
     return result
 
 def side_anchor(rect,toward,fraction=.5):
@@ -205,7 +215,10 @@ class Canvas:
 def export_page(page,mxfile):
     rects,lines,edges=build(page);c=Canvas(page['width'],page['height'])
     c.text(70,32,page['title'],32,True)
-    c.text(70,82,'SI 직원·프로젝트·평가·휴가 / 확정 논리설계 2026-11-04',20,color='#64748b')
+    subtitle=('SI 직원·프로젝트·평가·휴가 / 정보 차단벽 추가 2026-11-06'
+              if page['key'] in ('00_overview','01_staff_project')
+              else 'SI 직원·프로젝트·평가·휴가 / 확정 논리설계 2026-11-04')
+    c.text(70,82,subtitle,20,color='#64748b')
     label_boxes=[]
     for edge in edges:
         color='#70519b' if edge['kind']=='inherit' else '#64748b';pts=edge['points']
@@ -213,7 +226,9 @@ def export_page(page,mxfile):
         c.marker(pts[0],pts[1],optional=edge['optional'],color=color)
         c.marker(pts[-1],pts[-2],many=edge['kind']!='inherit',optional=True,color=color)
         # Edge labels are placed on a long free route segment.
-        label=edge['name'];tw=c.d.textlength(label,font=FONTS[18])+16
+        label=edge['name']
+        if edge['child']=='발주처경쟁관계':label+=' · CLIENT '+('A' if edge['name']=='경쟁기준' else 'B')
+        tw=c.d.textlength(label,font=FONTS[18])+16
         segments=sorted(zip(pts,pts[1:]),key=lambda a:abs(a[0][0]-a[1][0])+abs(a[0][1]-a[1][1]),reverse=True)
         def overlap(a,b):return a[0]<b[0]+b[2] and a[0]+a[2]>b[0] and a[1]<b[1]+b[3] and a[1]+a[3]>b[1]
         selected=None
@@ -262,6 +277,7 @@ def export_page(page,mxfile):
         tx,ty=(e['points'][-1][0]-br[0])/br[2],(e['points'][-1][1]-br[1])/br[3]
         end='ERzeroToOne' if e['kind']=='inherit' else 'ERzeroToMany';start='ERzeroToOne' if e['optional'] else 'ERone'
         label=e['name']+'  [ '+('0..1' if e['optional'] else '1')+' : '+('0..1' if e['kind']=='inherit' else '0..N')+' ]'
+        if ch=='발주처경쟁관계':label+=' · CLIENT '+('A' if e['name']=='경쟁기준' else 'B')
         style=f'edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow={start};endArrow={end};startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX={sx};exitY={sy};entryX={tx};entryY={ty};'
         if e['kind']=='inherit':style+='dashed=1;strokeColor=#70519b;'
         el=ET.SubElement(root,'mxCell',{'id':'e'+str(i),'value':label,'style':style,'edge':'1','parent':'1','source':ids[pa],'target':ids[ch]})
@@ -275,5 +291,4 @@ mxfile=ET.Element('mxfile',{'host':'app.diagrams.net','type':'device','version':
 for page in PAGES:export_page(page,mxfile)
 ET.indent(mxfile,space='  ')
 ET.ElementTree(mxfile).write(HERE/'SI_workforce_통합_ERD.drawio',encoding='utf-8',xml_declaration=True)
-(HERE/'README.md').write_text('''# ERD 산출물\n\n`SI_workforce_통합_ERD.drawio`는 diagrams.net에서 편집 가능한 4페이지 도면이다. 각 페이지의 SVG와 PNG도 함께 제공한다.\n\n- 00_overview: 25개 테이블과 모든 일반 관계 26개, 상속 관계 5개의 개요. 개요는 PK/FK만 표시한다.\n- 01_staff_project: 직원, 권한, 개발직원, 기술, 외부 경력, 프로젝트와 투입 이력 상세.\n- 02_evaluation: 프로젝트 평가의 3개 하위 유형, 고객 의뢰 PM, 평가 상세.\n- 03_leave: 정책 버전, 신청, 부여·사용 원장과 선택 처리자.\n\n사원/평가 상속은 각각 완전배타이다. 상속별로 1 : 0..1이며, 상위 하나당 정확히 한 하위 유형이 존재하도록 서버 트랜잭션에서 검증한다. 기본 관계의 자식은 부모 한 개를 참조하고, 부모는 자식 0..N개를 가질 수 있다. 휴가 처리자만 0..1명이다.\n\n상세 도면에는 해당 업무 밖의 참조 테이블 일부가 생략되며 전체 연결은 통합 개요에서 확인한다. [NULL]은 선택 속성이다. FK 역할명은 자식 테이블의 속성명으로 표시한다. 1:N 선의 양쪽 필수 참여는 사용하지 않는다.\n\nSQL의 TIMESTAMP를 논리 모델의 일시 속성에 대응시켰다. PostgreSQL용 초기 스키마 V1과 같은 물리명을 사용한다. 법정 휴가 한도·근무일 환산·PM 적격성·동료 자기 평가 금지·같은 프로젝트/소유자 검증은 정의서 및 앱 트랜잭션 규칙을 함께 참조한다.\n\n도면 생성은 로컬 Python·SVG/XML·Pillow만 사용했고 외부로 모델을 전송하지 않았다. DA# 모델 파일은 이 폴더의 도면과 별도로 관리한다.\n''',encoding='utf-8')
 print('DONE',flush=True)

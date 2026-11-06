@@ -17,70 +17,73 @@
         <mxCell id="n2" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;사원&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;EMPLOYEE&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  사번&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="1400" y="160" width="420" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="n3" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;발주처&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;CLIENT&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  발주처번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n3" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;발주처경쟁관계&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;CLIENT_COMPETITION&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  기준발주처번호 : bigint [NN]&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  경쟁발주처번호 : bigint [NN]&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;·  등록일 : date [NN]&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;·  해제일 : date [NULL]&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;·  등록사유 : varchar(200) [NN]&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;CHECK CLIENT_ID_A &amp;lt; CLIENT_ID_B&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;CHECK RELEASED_ON IS NULL OR&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;   RELEASED_ON &amp;gt;= REGISTERED_ON&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="2060" y="160" width="420" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;발주처&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;CLIENT&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  발주처번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="2720" y="160" width="420" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="n4" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;고객담당자&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;CLIENT_CONTACT&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  담당자번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  발주처번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n5" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;고객담당자&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;CLIENT_CONTACT&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  담당자번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  발주처번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="3380" y="160" width="420" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="n5" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;기술&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;SKILL&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  기술번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n6" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;기술&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;SKILL&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  기술번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="80" y="640" width="420" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="n6" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;직원보유기술&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;EMPLOYEE_SKILL&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  보유기술번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  사번&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  기술번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n7" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;직원보유기술&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;EMPLOYEE_SKILL&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  보유기술번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  사번&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  기술번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="740" y="640" width="420" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="n7" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;개발직원&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;DEVELOPER&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  사번&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n8" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;개발직원&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;DEVELOPER&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  사번&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="1400" y="640" width="420" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="n8" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;비개발직원&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;NON_DEVELOPER&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  사번&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n9" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;비개발직원&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;NON_DEVELOPER&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  사번&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="2060" y="640" width="420" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="n9" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;프로젝트&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;PROJECT&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  프로젝트번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  발주처번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n10" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;프로젝트&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;PROJECT&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  프로젝트번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  발주처번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="2720" y="640" width="420" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="n10" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;외부경력이력&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;EXTERNAL_CAREER&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  경력번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  사번&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n11" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;외부경력이력&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;EXTERNAL_CAREER&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  경력번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  사번&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="740" y="1120" width="420" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="n11" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;프로젝트참여&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;PROJECT_PARTICIPATION&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  참여번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  참여사번&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  프로젝트번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n12" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;프로젝트참여&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;PROJECT_PARTICIPATION&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  참여번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  참여사번&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  프로젝트번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="1400" y="1120" width="420" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="n12" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;직무수행이력&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;ASSIGNMENT_HISTORY&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  이력번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  참여번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  직무번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n13" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;직무수행이력&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;ASSIGNMENT_HISTORY&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  이력번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  참여번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  직무번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="2060" y="1120" width="420" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="n13" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;직무&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;JOB_ROLE&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  직무번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n14" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;직무&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;JOB_ROLE&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  직무번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="2720" y="1120" width="420" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="n14" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;휴가종류&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;LEAVE_TYPE&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  휴가종류번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e5f5ee;strokeColor=#34735b;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n15" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;휴가종류&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;LEAVE_TYPE&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  휴가종류번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e5f5ee;strokeColor=#34735b;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="80" y="1600" width="420" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="n15" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;휴가정책&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;LEAVE_POLICY&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  정책번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  휴가종류번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e5f5ee;strokeColor=#34735b;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n16" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;휴가정책&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;LEAVE_POLICY&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  정책번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  휴가종류번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e5f5ee;strokeColor=#34735b;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="740" y="1600" width="420" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="n16" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;휴가신청&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;LEAVE_REQUEST&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  신청번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  정책번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  신청사번&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  처리자사번 [NULL]&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e5f5ee;strokeColor=#34735b;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n17" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;휴가신청&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;LEAVE_REQUEST&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  신청번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  정책번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  신청사번&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  처리자사번 [NULL]&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e5f5ee;strokeColor=#34735b;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="1400" y="1600" width="420" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="n17" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;프로젝트평가&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;PROJECT_EVALUATION&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  평가번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  피평가참여번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#f0eaff;strokeColor=#70519b;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n18" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;프로젝트평가&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;PROJECT_EVALUATION&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  평가번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  피평가참여번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#f0eaff;strokeColor=#70519b;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="2060" y="1600" width="420" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="n18" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;평가항목&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;EVALUATION_ITEM&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  항목번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#f0eaff;strokeColor=#70519b;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n19" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;평가항목&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;EVALUATION_ITEM&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  항목번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#f0eaff;strokeColor=#70519b;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="2720" y="1600" width="420" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="n19" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;평가상세&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;EVALUATION_DETAIL&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  평가번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  항목번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#f0eaff;strokeColor=#70519b;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n20" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;평가상세&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;EVALUATION_DETAIL&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  평가번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  항목번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#f0eaff;strokeColor=#70519b;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="3380" y="1600" width="420" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="n20" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;연차부여내역&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;ANNUAL_LEAVE_GRANT&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  부여번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  사번&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  정책번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e5f5ee;strokeColor=#34735b;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n21" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;연차부여내역&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;ANNUAL_LEAVE_GRANT&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  부여번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  사번&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  정책번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e5f5ee;strokeColor=#34735b;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="740" y="2080" width="420" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="n21" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;연차사용내역&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;ANNUAL_LEAVE_USAGE&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  사용번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  신청번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  부여번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e5f5ee;strokeColor=#34735b;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n22" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;연차사용내역&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;ANNUAL_LEAVE_USAGE&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  사용번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  신청번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  부여번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e5f5ee;strokeColor=#34735b;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="1400" y="2080" width="420" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="n22" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;고객평가&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;CUSTOMER_EVALUATION&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  평가번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  평가자담당자번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  의뢰PM참여번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#f0eaff;strokeColor=#70519b;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n23" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;고객평가&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;CUSTOMER_EVALUATION&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  평가번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  평가자담당자번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  의뢰PM참여번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#f0eaff;strokeColor=#70519b;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="2060" y="2080" width="420" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="n23" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;PM평가&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;PM_EVALUATION&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  평가번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  평가자참여번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#f0eaff;strokeColor=#70519b;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n24" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;PM평가&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;PM_EVALUATION&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  평가번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  평가자참여번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#f0eaff;strokeColor=#70519b;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="2720" y="2080" width="420" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="n24" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;동료평가&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;PEER_EVALUATION&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  평가번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  평가자참여번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#f0eaff;strokeColor=#70519b;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n25" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;동료평가&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;PEER_EVALUATION&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  평가번호&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  평가자참여번호&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#f0eaff;strokeColor=#70519b;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="3380" y="2080" width="420" height="140" as="geometry" />
         </mxCell>
         <mxCell id="e0" value="권한보유  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.4444444444444444;" edge="1" parent="1" source="n2" target="n1">
@@ -101,7 +104,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e2" value="담당자소속  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5714285714285714;" edge="1" parent="1" source="n3" target="n4">
+        <mxCell id="e2" value="담당자소속  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5714285714285714;" edge="1" parent="1" source="n4" target="n5">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="3180" y="220" />
@@ -110,7 +113,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e3" value="발주  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;" edge="1" parent="1" source="n3" target="n9">
+        <mxCell id="e3" value="발주  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;" edge="1" parent="1" source="n4" target="n10">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="2920" y="320" />
@@ -118,7 +121,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e4" value="프로젝트참여  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;" edge="1" parent="1" source="n7" target="n11">
+        <mxCell id="e4" value="프로젝트참여  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;" edge="1" parent="1" source="n8" target="n12">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1600" y="800" />
@@ -126,7 +129,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e5" value="참여구성  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.0;exitY=0.5714285714285714;entryX=1.0;entryY=0.2222222222222222;" edge="1" parent="1" source="n9" target="n11">
+        <mxCell id="e5" value="참여구성  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.0;exitY=0.5714285714285714;entryX=1.0;entryY=0.2222222222222222;" edge="1" parent="1" source="n10" target="n12">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="2680" y="720" />
@@ -136,7 +139,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e6" value="투입이력  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.3333333333333333;entryX=0.0;entryY=0.4444444444444444;" edge="1" parent="1" source="n11" target="n12">
+        <mxCell id="e6" value="투입이력  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.3333333333333333;entryX=0.0;entryY=0.4444444444444444;" edge="1" parent="1" source="n12" target="n13">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1860" y="1180" />
@@ -145,7 +148,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e7" value="직무분류  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.4444444444444444;" edge="1" parent="1" source="n13" target="n12">
+        <mxCell id="e7" value="직무분류  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.4444444444444444;" edge="1" parent="1" source="n14" target="n13">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="2680" y="1180" />
@@ -154,7 +157,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e8" value="기술보유  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.0;exitY=0.3333333333333333;entryX=1.0;entryY=0.4444444444444444;" edge="1" parent="1" source="n7" target="n6">
+        <mxCell id="e8" value="기술보유  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.0;exitY=0.3333333333333333;entryX=1.0;entryY=0.4444444444444444;" edge="1" parent="1" source="n8" target="n7">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1360" y="680" />
@@ -163,7 +166,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e9" value="보유기술분류  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.4444444444444444;" edge="1" parent="1" source="n5" target="n6">
+        <mxCell id="e9" value="보유기술분류  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.4444444444444444;" edge="1" parent="1" source="n6" target="n7">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="540" y="700" />
@@ -172,7 +175,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e10" value="외부경력  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.0;exitY=0.6666666666666666;entryX=1.0;entryY=0.5714285714285714;" edge="1" parent="1" source="n7" target="n10">
+        <mxCell id="e10" value="외부경력  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.0;exitY=0.6666666666666666;entryX=1.0;entryY=0.5714285714285714;" edge="1" parent="1" source="n8" target="n11">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1360" y="720" />
@@ -181,7 +184,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e11" value="피평가대상  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.4444444444444444;entryX=0.0;entryY=0.5714285714285714;" edge="1" parent="1" source="n11" target="n17">
+        <mxCell id="e11" value="피평가대상  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.4444444444444444;entryX=0.0;entryY=0.5714285714285714;" edge="1" parent="1" source="n12" target="n18">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1860" y="1200" />
@@ -190,7 +193,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e12" value="고객평가실시  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.23809523809523808;entryY=0.0;" edge="1" parent="1" source="n4" target="n22">
+        <mxCell id="e12" value="고객평가실시  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.23809523809523808;entryY=0.0;" edge="1" parent="1" source="n5" target="n23">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="3580" y="340" />
@@ -200,7 +203,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e13" value="PM평가실시  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.6666666666666666;entryX=0.0;entryY=0.2857142857142857;" edge="1" parent="1" source="n11" target="n23">
+        <mxCell id="e13" value="PM평가실시  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.6666666666666666;entryX=0.0;entryY=0.2857142857142857;" edge="1" parent="1" source="n12" target="n24">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1860" y="1240" />
@@ -211,7 +214,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e14" value="동료평가실시  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.8888888888888888;entryX=0.0;entryY=0.2857142857142857;" edge="1" parent="1" source="n11" target="n24">
+        <mxCell id="e14" value="동료평가실시  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.8888888888888888;entryX=0.0;entryY=0.2857142857142857;" edge="1" parent="1" source="n12" target="n25">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1860" y="1280" />
@@ -221,7 +224,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e15" value="평가구성  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.2857142857142857;entryX=0.0;entryY=0.2857142857142857;" edge="1" parent="1" source="n17" target="n19">
+        <mxCell id="e15" value="평가구성  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.2857142857142857;entryX=0.0;entryY=0.2857142857142857;" edge="1" parent="1" source="n18" target="n20">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="2520" y="1640" />
@@ -233,7 +236,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e16" value="평가항목구성  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.7142857142857143;" edge="1" parent="1" source="n18" target="n19">
+        <mxCell id="e16" value="평가항목구성  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.7142857142857143;" edge="1" parent="1" source="n19" target="n20">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="3180" y="1660" />
@@ -242,7 +245,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e17" value="정책버전  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5714285714285714;" edge="1" parent="1" source="n14" target="n15">
+        <mxCell id="e17" value="정책버전  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5714285714285714;" edge="1" parent="1" source="n15" target="n16">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="540" y="1660" />
@@ -251,7 +254,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e18" value="신청적용정책  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5714285714285714;entryX=0.0;entryY=0.5;" edge="1" parent="1" source="n15" target="n16">
+        <mxCell id="e18" value="신청적용정책  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5714285714285714;entryX=0.0;entryY=0.5;" edge="1" parent="1" source="n16" target="n17">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1200" y="1680" />
@@ -260,7 +263,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e19" value="휴가신청  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.19047619047619047;exitY=1.0;entryX=0.3333333333333333;entryY=0.0;" edge="1" parent="1" source="n2" target="n16">
+        <mxCell id="e19" value="휴가신청  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.19047619047619047;exitY=1.0;entryX=0.3333333333333333;entryY=0.0;" edge="1" parent="1" source="n2" target="n17">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1480" y="320" />
@@ -270,7 +273,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e20" value="휴가처리  [ 0..1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERzeroToOne;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.38095238095238093;exitY=1.0;entryX=0.6666666666666666;entryY=0.0;" edge="1" parent="1" source="n2" target="n16">
+        <mxCell id="e20" value="휴가처리  [ 0..1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERzeroToOne;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.38095238095238093;exitY=1.0;entryX=0.6666666666666666;entryY=0.0;" edge="1" parent="1" source="n2" target="n17">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1560" y="320" />
@@ -280,7 +283,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e21" value="연차부여  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.6190476190476191;exitY=1.0;entryX=0.3333333333333333;entryY=0.0;" edge="1" parent="1" source="n2" target="n20">
+        <mxCell id="e21" value="연차부여  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.6190476190476191;exitY=1.0;entryX=0.3333333333333333;entryY=0.0;" edge="1" parent="1" source="n2" target="n21">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1660" y="320" />
@@ -291,7 +294,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e22" value="연차산정근거  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.6666666666666666;entryY=0.0;" edge="1" parent="1" source="n15" target="n20">
+        <mxCell id="e22" value="연차산정근거  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.6666666666666666;entryY=0.0;" edge="1" parent="1" source="n16" target="n21">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="940" y="1780" />
@@ -300,7 +303,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e23" value="연차사용  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;" edge="1" parent="1" source="n16" target="n21">
+        <mxCell id="e23" value="연차사용  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;" edge="1" parent="1" source="n17" target="n22">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1600" y="1840" />
@@ -308,7 +311,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e24" value="연차차감  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.4444444444444444;entryX=0.0;entryY=0.4444444444444444;" edge="1" parent="1" source="n20" target="n21">
+        <mxCell id="e24" value="연차차감  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.4444444444444444;entryX=0.0;entryY=0.4444444444444444;" edge="1" parent="1" source="n21" target="n22">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1200" y="2160" />
@@ -316,7 +319,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e25" value="고객평가의뢰PM  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;" edge="1" parent="1" source="n11" target="n22">
+        <mxCell id="e25" value="고객평가의뢰PM  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;" edge="1" parent="1" source="n12" target="n23">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1600" y="1340" />
@@ -327,7 +330,25 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e26" value="사원구분=DEV  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.8095238095238095;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n2" target="n7">
+        <mxCell id="e26" value="경쟁기준  [ 1 : 0..N ] · CLIENT A" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.0;exitY=0.3333333333333333;entryX=1.0;entryY=0.3125;" edge="1" parent="1" source="n4" target="n3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2680" y="200" />
+              <mxPoint x="2520" y="200" />
+              <mxPoint x="2520" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e27" value="경쟁상대  [ 1 : 0..N ] · CLIENT B" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.0;exitY=0.6666666666666666;entryX=1.0;entryY=0.6875;" edge="1" parent="1" source="n4" target="n3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2680" y="240" />
+              <mxPoint x="2680" y="380" />
+              <mxPoint x="2520" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e28" value="사원구분=DEV  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.8095238095238095;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n2" target="n8">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1740" y="320" />
@@ -336,7 +357,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e27" value="사원구분=NONDEV  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n2" target="n8">
+        <mxCell id="e29" value="사원구분=NONDEV  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n2" target="n9">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1860" y="220" />
@@ -345,7 +366,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e28" value="평가구분=CUSTOMER  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.7619047619047619;entryY=0.0;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n17" target="n22">
+        <mxCell id="e30" value="평가구분=CUSTOMER  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.7619047619047619;entryY=0.0;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n18" target="n23">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="2260" y="1780" />
@@ -354,7 +375,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e29" value="평가구분=PM  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5714285714285714;entryX=0.0;entryY=0.7142857142857143;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n17" target="n23">
+        <mxCell id="e31" value="평가구분=PM  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5714285714285714;entryX=0.0;entryY=0.7142857142857143;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n18" target="n24">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="2520" y="1680" />
@@ -363,7 +384,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e30" value="평가구분=PEER  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.7142857142857143;entryX=0.0;entryY=0.7142857142857143;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n17" target="n24">
+        <mxCell id="e32" value="평가구분=PEER  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.7142857142857143;entryX=0.0;entryY=0.7142857142857143;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n18" target="n25">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="2520" y="1700" />
@@ -374,7 +395,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="notes" value="루트 엔터티 20개 + 하위 유형 5개 / 일반 관계 26개 + 상속 5개. 개요에는 PK·FK만 표시합니다.&lt;br&gt;사원 DEV/NONDEV, 평가 CUSTOMER/PM/PEER는 각각 완전배타입니다. 상속별 1 : 0..1, 각 상위 레코드는 정확히 한 하위 유형을 가집니다." style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontSize=18;fontFamily=Malgun Gothic;fillColor=#f7f9fc;strokeColor=#cbd5e1;" vertex="1" parent="1">
+        <mxCell id="notes" value="루트 엔터티 21개 + 하위 유형 5개 / 일반 관계 28개 + 상속 5개. 개요는 PK·FK, 신규 경쟁관계는 전체 속성·CHECK를 표시합니다.&lt;br&gt;사원 DEV/NONDEV, 평가 CUSTOMER/PM/PEER는 각각 완전배타입니다. 상속별 1 : 0..1, 각 상위 레코드는 정확히 한 하위 유형을 가집니다." style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontSize=18;fontFamily=Malgun Gothic;fillColor=#f7f9fc;strokeColor=#cbd5e1;" vertex="1" parent="1">
           <mxGeometry x="60" y="2602" width="4140" height="108" as="geometry" />
         </mxCell>
       </root>
@@ -427,7 +448,10 @@
         <mxCell id="n12" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;고객담당자&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;CLIENT_CONTACT&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  담당자번호 : bigint&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;FK  발주처번호 : bigint&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;·  담당자명 : varchar(50)&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;·  이메일 : varchar(100)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="80" y="2020" width="420" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="n13" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;직무&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;JOB_ROLE&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  직무번호 : varchar(20)&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;·  직무명 : varchar(50)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="n13" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;발주처경쟁관계&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;CLIENT_COMPETITION&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  기준발주처번호 : bigint [NN]&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK/FK  경쟁발주처번호 : bigint [NN]&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;·  등록일 : date [NN]&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;·  해제일 : date [NULL]&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;·  등록사유 : varchar(200) [NN]&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;CHECK CLIENT_ID_A &amp;lt; CLIENT_ID_B&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;CHECK RELEASED_ON IS NULL OR&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;   RELEASED_ON &amp;gt;= REGISTERED_ON&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="740" y="2020" width="420" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="n14" value="&lt;div style=&quot;font-size:22px;font-weight:bold&quot;&gt;직무&lt;/div&gt;&lt;div style=&quot;font-size:16px&quot;&gt;JOB_ROLE&lt;/div&gt;&lt;hr&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;PK  직무번호 : varchar(20)&lt;/div&gt;&lt;div style=&quot;font-size:18px;line-height:28px&quot;&gt;·  직무명 : varchar(50)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontFamily=Malgun Gothic;fillColor=#e8f1ff;strokeColor=#315d92;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="1400" y="2020" width="420" height="140" as="geometry" />
         </mxCell>
         <mxCell id="e0" value="권한보유  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.5;" edge="1" parent="1" source="n2" target="n1">
@@ -448,10 +472,11 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e2" value="담당자소속  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;" edge="1" parent="1" source="n8" target="n12">
+        <mxCell id="e2" value="담당자소속  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.23809523809523808;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;" edge="1" parent="1" source="n8" target="n12">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="280" y="1620" />
+              <mxPoint x="180" y="1620" />
+              <mxPoint x="180" y="1980" />
               <mxPoint x="280" y="1980" />
             </Array>
           </mxGeometry>
@@ -490,7 +515,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e7" value="직무분류  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5714285714285714;entryX=0.0;entryY=0.6666666666666666;" edge="1" parent="1" source="n13" target="n11">
+        <mxCell id="e7" value="직무분류  [ 1 : 0..N ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5714285714285714;entryX=0.0;entryY=0.6666666666666666;" edge="1" parent="1" source="n14" target="n11">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1860" y="2100" />
@@ -526,7 +551,26 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e11" value="사원구분=DEV  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n2" target="n6">
+        <mxCell id="e11" value="경쟁기준  [ 1 : 0..N ] · CLIENT A" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.3333333333333333;entryY=0.0;" edge="1" parent="1" source="n8" target="n13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="1620" />
+              <mxPoint x="280" y="1980" />
+              <mxPoint x="880" y="1980" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" value="경쟁상대  [ 1 : 0..N ] · CLIENT B" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.7619047619047619;exitY=1.0;entryX=0.6666666666666666;entryY=0.0;" edge="1" parent="1" source="n8" target="n13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="1620" />
+              <mxPoint x="400" y="1960" />
+              <mxPoint x="1020" y="1960" />
+              <mxPoint x="1020" y="1980" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e13" value="사원구분=DEV  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=0.47619047619047616;exitY=1.0;entryX=0.47619047619047616;entryY=0.0;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n2" target="n6">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1600" y="520" />
@@ -534,7 +578,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e12" value="사원구분=NONDEV  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5714285714285714;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n2" target="n3">
+        <mxCell id="e14" value="사원구분=NONDEV  [ 1 : 0..1 ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=18;fontFamily=Malgun Gothic;labelBackgroundColor=#ffffff;startArrow=ERone;endArrow=ERzeroToOne;startFill=0;endFill=0;strokeColor=#64748b;strokeWidth=2;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5714285714285714;dashed=1;strokeColor=#70519b;" edge="1" parent="1" source="n2" target="n3">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1860" y="320" />

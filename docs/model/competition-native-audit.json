@@ -1,0 +1,142 @@
+{
+  "verified_on": "2026-11-06",
+  "method": "DA# native COM API; existing entity and relationship snapshots compared before save",
+  "root_entity_count": 21,
+  "subtype_count": 5,
+  "ordinary_relation_count": 28,
+  "existing_entities_preserved": true,
+  "existing_relations_preserved": true,
+  "existing_structure_equal_before_after": true,
+  "saved_file_reopened_verified": true,
+  "reopened_subject_counts": [
+    {
+      "subject": "00_통합ERD",
+      "entities": 21,
+      "relations": 28
+    },
+    {
+      "subject": "01_직원프로젝트",
+      "entities": 11,
+      "relations": 10
+    },
+    {
+      "subject": "02_프로젝트평가",
+      "entities": 8,
+      "relations": 11
+    },
+    {
+      "subject": "03_휴가관리",
+      "entities": 6,
+      "relations": 8
+    },
+    {
+      "subject": "04_정보차단벽",
+      "entities": 2,
+      "relations": 2
+    }
+  ],
+  "new_entity": {
+    "name": "발주처경쟁관계",
+    "table": "CLIENT_COMPETITION",
+    "description": "경쟁 관계인 발주처 쌍. 발주처 간 셀프 M:N을 해소하는 교차 엔티티. 한 쌍은 한 방향(A<B)으로만 저장. PostgreSQL. CHECK (CLIENT_ID_A < CLIENT_ID_B); CHECK (RELEASED_ON IS NULL OR RELEASED_ON >= REGISTERED_ON). 해제일 NULL = 현재 유효.",
+    "attributes": [
+      {
+        "name": "기준발주처번호",
+        "column": "CLIENT_ID_A",
+        "type": "BIGINT",
+        "length": "",
+        "pk": true,
+        "fk": true,
+        "not_null": true
+      },
+      {
+        "name": "경쟁발주처번호",
+        "column": "CLIENT_ID_B",
+        "type": "BIGINT",
+        "length": "",
+        "pk": true,
+        "fk": true,
+        "not_null": true
+      },
+      {
+        "name": "등록사유",
+        "column": "REASON",
+        "type": "VARCHAR",
+        "length": "200",
+        "pk": false,
+        "fk": false,
+        "not_null": true
+      },
+      {
+        "name": "등록일",
+        "column": "REGISTERED_ON",
+        "type": "DATE",
+        "length": "",
+        "pk": false,
+        "fk": false,
+        "not_null": true
+      },
+      {
+        "name": "해제일",
+        "column": "RELEASED_ON",
+        "type": "DATE",
+        "length": "",
+        "pk": false,
+        "fk": false,
+        "not_null": false
+      }
+    ]
+  },
+  "new_relations": [
+    {
+      "name": "경쟁기준",
+      "parent": "발주처",
+      "child": "발주처경쟁관계",
+      "roles": [
+        {
+          "source": "발주처번호",
+          "target": "기준발주처번호"
+        }
+      ],
+      "parent_many": false,
+      "child_many": true,
+      "parent_mandatory": false,
+      "child_mandatory": true,
+      "identifying": true,
+      "child_not_inherit": false
+    },
+    {
+      "name": "경쟁상대",
+      "parent": "발주처",
+      "child": "발주처경쟁관계",
+      "roles": [
+        {
+          "source": "발주처번호",
+          "target": "경쟁발주처번호"
+        }
+      ],
+      "parent_many": false,
+      "child_many": true,
+      "parent_mandatory": false,
+      "child_mandatory": true,
+      "identifying": true,
+      "child_not_inherit": false
+    }
+  ],
+  "subjects": [
+    "00_통합ERD",
+    "01_직원프로젝트",
+    "02_프로젝트평가",
+    "03_휴가관리",
+    "04_정보차단벽"
+  ],
+  "check_constraints": [
+    "CLIENT_ID_A < CLIENT_ID_B",
+    "RELEASED_ON IS NULL OR RELEASED_ON >= REGISTERED_ON"
+  ],
+  "checks_storage": "Native entity description and model metadata; enforced by SQL V1",
+  "limitations": [
+    "Existing native UNIQUE getter issue is unchanged; see native-audit.md.",
+    "Native diagram visual layout is not screen-inspected; PNG/SVG/draw.io are the inspected display artifacts."
+  ]
+}

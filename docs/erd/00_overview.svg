@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="4260" height="2740" viewBox="0 0 4260 2740">
 <rect width="100%" height="100%" fill="white"/>
 <text x="70" y="64" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="32" font-weight="bold" fill="#24334a">통합 ERD 개요</text>
-<text x="70" y="102" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="20" font-weight="normal" fill="#64748b">SI 직원·프로젝트·평가·휴가 / 확정 논리설계 2026-11-04</text>
+<text x="70" y="102" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="20" font-weight="normal" fill="#64748b">SI 직원·프로젝트·평가·휴가 / 정보 차단벽 추가 2026-11-06</text>
 <polyline points="1400,220 1360,220 1200,220 1200,240 1160,240" fill="none" stroke="#64748b" stroke-width="2"/>
 <polyline points="1392.0,228.0 1392.0,212.0" fill="none" stroke="#64748b" stroke-width="2"/>
 <polyline points="1382.0,228.0 1382.0,212.0" fill="none" stroke="#64748b" stroke-width="2"/>
@@ -262,6 +262,26 @@
 <text x="1832.5" y="1564.6" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#64748b">고객평가의뢰PM</text>
 <text x="1630" y="1326" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="16" font-weight="normal" fill="#64748b">1</text>
 <text x="2290" y="2060" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="16" font-weight="normal" fill="#64748b">0..N</text>
+<polyline points="2720,200 2680,200 2520,200 2520,260 2480,260" fill="none" stroke="#64748b" stroke-width="2"/>
+<polyline points="2712.0,208.0 2712.0,192.0" fill="none" stroke="#64748b" stroke-width="2"/>
+<polyline points="2702.0,208.0 2702.0,192.0" fill="none" stroke="#64748b" stroke-width="2"/>
+<polyline points="2480.0,252.0 2496.0,260.0 2480.0,268.0" fill="none" stroke="#64748b" stroke-width="2"/>
+<polyline points="2480.0,260.0 2496.0,260.0" fill="none" stroke="#64748b" stroke-width="2"/>
+<circle cx="2508.0" cy="260.0" r="5" fill="white" stroke="#64748b" stroke-width="2"/>
+<rect x="2510.0" y="188.0" width="180.0" height="26" fill="white" stroke="white" stroke-width="1"/>
+<text x="2518.0" y="207.0" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#64748b">경쟁기준 · CLIENT A</text>
+<text x="2655" y="226" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="16" font-weight="normal" fill="#64748b">1</text>
+<text x="2510" y="286" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="16" font-weight="normal" fill="#64748b">0..N</text>
+<polyline points="2720,240 2680,240 2680,380 2520,380 2480,380" fill="none" stroke="#64748b" stroke-width="2"/>
+<polyline points="2712.0,248.0 2712.0,232.0" fill="none" stroke="#64748b" stroke-width="2"/>
+<polyline points="2702.0,248.0 2702.0,232.0" fill="none" stroke="#64748b" stroke-width="2"/>
+<polyline points="2480.0,372.0 2496.0,380.0 2480.0,388.0" fill="none" stroke="#64748b" stroke-width="2"/>
+<polyline points="2480.0,380.0 2496.0,380.0" fill="none" stroke="#64748b" stroke-width="2"/>
+<circle cx="2508.0" cy="380.0" r="5" fill="white" stroke="#64748b" stroke-width="2"/>
+<rect x="2510.5" y="368.0" width="179.0" height="26" fill="white" stroke="white" stroke-width="1"/>
+<text x="2518.5" y="387.0" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#64748b">경쟁상대 · CLIENT B</text>
+<text x="2655" y="266" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="16" font-weight="normal" fill="#64748b">1</text>
+<text x="2510" y="406" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="16" font-weight="normal" fill="#64748b">0..N</text>
 <polyline points="1740,280 1740,320 1740,600 1600,600 1600,640" fill="none" stroke="#70519b" stroke-width="2" stroke-dasharray="8 5"/>
 <polyline points="1748.0,288.0 1732.0,288.0" fill="none" stroke="#70519b" stroke-width="2"/>
 <polyline points="1748.0,298.0 1732.0,298.0" fill="none" stroke="#70519b" stroke-width="2"/>
@@ -276,8 +296,8 @@
 <polyline points="1838.0,212.0 1838.0,228.0" fill="none" stroke="#70519b" stroke-width="2"/>
 <polyline points="2052.0,708.0 2052.0,692.0" fill="none" stroke="#70519b" stroke-width="2"/>
 <circle cx="2032.0" cy="700.0" r="5" fill="white" stroke="#70519b" stroke-width="2"/>
-<rect x="1932.0" y="448.0" width="176.0" height="26" fill="white" stroke="white" stroke-width="1"/>
-<text x="1940.0" y="467.0" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#70519b">사원구분=NONDEV</text>
+<rect x="1932.0" y="534.4000000000001" width="176.0" height="26" fill="white" stroke="white" stroke-width="1"/>
+<text x="1940.0" y="553.4000000000001" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#70519b">사원구분=NONDEV</text>
 <text x="1850" y="246" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="16" font-weight="normal" fill="#70519b">1</text>
 <text x="1995" y="726" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="16" font-weight="normal" fill="#70519b">0..1</text>
 <polyline points="2260,1740 2260,1780 2380,1780 2380,2040 2380,2080" fill="none" stroke="#70519b" stroke-width="2" stroke-dasharray="8 5"/>
@@ -324,6 +344,18 @@
 <text x="1414" y="190" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="22" font-weight="bold" fill="#315d92">사원</text>
 <text x="1414" y="215" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="16" font-weight="normal" fill="#315d92">EMPLOYEE</text>
 <text x="1414" y="256" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#344256">PK  사번</text>
+<rect x="2060" y="160" width="420" height="320" fill="white" stroke="#315d92" stroke-width="2"/>
+<rect x="2060" y="160" width="420" height="70" fill="#e8f1ff" stroke="#315d92" stroke-width="2"/>
+<text x="2074" y="190" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="22" font-weight="bold" fill="#315d92">발주처경쟁관계</text>
+<text x="2074" y="215" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="16" font-weight="normal" fill="#315d92">CLIENT_COMPETITION</text>
+<text x="2074" y="256" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#344256">PK/FK  기준발주처번호 : bigint [NN]</text>
+<text x="2074" y="284" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#344256">PK/FK  경쟁발주처번호 : bigint [NN]</text>
+<text x="2074" y="312" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#344256">·  등록일 : date [NN]</text>
+<text x="2074" y="340" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#344256">·  해제일 : date [NULL]</text>
+<text x="2074" y="368" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#344256">·  등록사유 : varchar(200) [NN]</text>
+<text x="2074" y="396" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#344256">CHECK CLIENT_ID_A &lt; CLIENT_ID_B</text>
+<text x="2074" y="424" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#344256">CHECK RELEASED_ON IS NULL OR</text>
+<text x="2074" y="452" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#344256">   RELEASED_ON &gt;= REGISTERED_ON</text>
 <rect x="2720" y="160" width="420" height="120" fill="white" stroke="#315d92" stroke-width="2"/>
 <rect x="2720" y="160" width="420" height="70" fill="#e8f1ff" stroke="#315d92" stroke-width="2"/>
 <text x="2734" y="190" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="22" font-weight="bold" fill="#315d92">발주처</text>
@@ -458,7 +490,7 @@
 <text x="3394" y="2176" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#344256">PK/FK  평가번호</text>
 <text x="3394" y="2204" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#344256">FK  평가자참여번호</text>
 <rect x="60" y="2602" width="4140" height="108" fill="#f7f9fc" stroke="#cbd5e1" stroke-width="1"/>
-<text x="78" y="2632" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#24334a">루트 엔터티 20개 + 하위 유형 5개 / 일반 관계 26개 + 상속 5개. 개요에는 PK·FK만 표시합니다.</text>
+<text x="78" y="2632" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#24334a">루트 엔터티 21개 + 하위 유형 5개 / 일반 관계 28개 + 상속 5개. 개요는 PK·FK, 신규 경쟁관계는 전체 속성·CHECK를 표시합니다.</text>
 <text x="78" y="2660" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#24334a">사원 DEV/NONDEV, 평가 CUSTOMER/PM/PEER는 각각 완전배타입니다. 상속별 1 : 0..1, 각 상위 레코드는 정확히 한 하위 유형을 가집니다.</text>
 <text x="78" y="2692" font-family="Malgun Gothic,Noto Sans KR,sans-serif" font-size="18" font-weight="normal" fill="#64748b">관계: 부모 1 / 자식 0..N  ·  빈 원 = 선택  ·  상속 점선 1 : 0..1  ·  [NULL] = 선택 속성  ·  FK 역할명은 각 테이블에 표시</text>
 </svg>

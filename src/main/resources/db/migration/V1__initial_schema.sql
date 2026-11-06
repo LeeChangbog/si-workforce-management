@@ -1,4 +1,4 @@
--- Initial relational schema: 20 root entities + 5 joined subtype tables.
+-- Initial relational schema: 21 root entities + 5 joined subtype tables.
 -- PostgreSQL 17 and H2 PostgreSQL mode use this same migration.
 -- Date ranges are inclusive; leave timestamps describe [start, end).
 -- No statutory leave quantities are hard-coded or seeded here.
@@ -365,5 +365,24 @@ CREATE TABLE annual_leave_usage (
     CONSTRAINT ck_annual_canceled_at CHECK (
         (canceled_yn = 'N' AND canceled_at IS NULL)
         OR (canceled_yn = 'Y' AND canceled_at IS NOT NULL)
+    )
+);
+
+-- Information barrier: one unordered client pair is stored once as A < B.
+-- Both client references identify the association; existing assignments remain unchanged.
+CREATE TABLE client_competition (
+    client_id_a BIGINT NOT NULL,
+    client_id_b BIGINT NOT NULL,
+    registered_on DATE NOT NULL,
+    released_on DATE,
+    reason VARCHAR(200) NOT NULL,
+    CONSTRAINT pk_client_competition PRIMARY KEY (client_id_a, client_id_b),
+    CONSTRAINT fk_competition_client_a FOREIGN KEY (client_id_a)
+        REFERENCES client (client_id),
+    CONSTRAINT fk_competition_client_b FOREIGN KEY (client_id_b)
+        REFERENCES client (client_id),
+    CONSTRAINT ck_client_competition_order CHECK (client_id_a < client_id_b),
+    CONSTRAINT ck_client_competition_dates CHECK (
+        released_on IS NULL OR released_on >= registered_on
     )
 );

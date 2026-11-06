@@ -159,6 +159,14 @@
       2100,
       "사용번호/USAGE_ID/BIGINT//P;사용분/USED_MINUTES/INT/;취소여부/CANCELED_YN/CHAR/1;취소일시/CANCELED_AT/DATETIME/",
       "신청과 부여의 교차 엔티티. 신청자와 부여대상 사원 일치. 취소 시 기록 유지하고 차감 복원"
+    ],
+    [
+      "발주처경쟁관계",
+      "CLIENT_COMPETITION",
+      1840,
+      80,
+      "기준발주처번호/CLIENT_ID_A/BIGINT//P;경쟁발주처번호/CLIENT_ID_B/BIGINT//P;등록일/REGISTERED_ON/DATE/;해제일/RELEASED_ON/DATE/;등록사유/REASON/VARCHAR/200",
+      "경쟁 관계인 발주처 쌍. 발주처 간 셀프 M:N을 해소하는 교차 엔티티. 한 쌍은 한 방향(A<B)으로만 저장"
     ]
   ],
   "subtypes": [
@@ -417,14 +425,34 @@
       "의뢰PM참여번호",
       "REQUESTER_PM_PARTICIPATION_ID",
       "고객평가의뢰PM"
+    ],
+    [
+      "발주처",
+      "발주처경쟁관계",
+      "발주처번호",
+      "기준발주처번호",
+      "CLIENT_ID_A",
+      "경쟁기준",
+      true
+    ],
+    [
+      "발주처",
+      "발주처경쟁관계",
+      "발주처번호",
+      "경쟁발주처번호",
+      "CLIENT_ID_B",
+      "경쟁상대",
+      true
     ]
   ],
-  "model_revision": "2026-11-04_설계담당_최소보완안",
+  "model_revision": "2026-11-06_CLIENT_COMPETITION_추가",
   "counts": {
-    "root_entities": 20,
+    "root_entities": 21,
     "subtypes": 5,
-    "relationships": 26,
-    "note": "서브타입 상속 관계는 26개 일반 관계선에 포함하지 않음"
+    "relationships": 28,
+    "note": "서브타입 상속 5개는 일반 관계 28개에 포함하지 않음; 물리 FK는 일반 28개 + 상속 5개",
+    "physical_tables": 26,
+    "total_foreign_keys": 33
   },
   "nullable_attributes": {
     "프로젝트": [
@@ -448,6 +476,9 @@
     ],
     "연차사용내역": [
       "취소일시"
+    ],
+    "발주처경쟁관계": [
+      "해제일"
     ]
   },
   "primary_keys": {
@@ -511,6 +542,10 @@
     ],
     "연차사용내역": [
       "사용번호"
+    ],
+    "발주처경쟁관계": [
+      "기준발주처번호",
+      "경쟁발주처번호"
     ]
   },
   "subtype_inherited_key": {
@@ -568,7 +603,9 @@
     ],
     "identifying": [
       "평가구성",
-      "평가항목구성"
+      "평가항목구성",
+      "경쟁기준",
+      "경쟁상대"
     ],
     "subtyping": "사원 DEV/NONDEV 및 프로젝트평가 CUSTOMER/PM/PEER는 완전배타; 물리 구현 시 상위 키를 하위 PK/FK로 사용"
   },
@@ -664,6 +701,113 @@
       "entity": "휴가정책",
       "expression": "한도단위 IN ('DAY','HOUR','MINUTE')",
       "note": "한도량의 단위 명시. 연/월/사건 한도기준과 구분한다."
+    },
+    {
+      "entity": "발주처경쟁관계",
+      "expression": "CLIENT_ID_A < CLIENT_ID_B",
+      "name": "CK_CLIENT_COMPETITION_ORDER",
+      "note": "동일·역방향 쌍 금지; A<B 방향으로 저장"
+    },
+    {
+      "entity": "발주처경쟁관계",
+      "expression": "RELEASED_ON IS NULL OR RELEASED_ON >= REGISTERED_ON",
+      "name": "CK_CLIENT_COMPETITION_DATES",
+      "note": "해제일 NULL은 현재 유효; 값이 있으면 등록일 이상"
     }
-  ]
+  ],
+  "entity_metadata": {
+    "발주처경쟁관계": {
+      "physical_name": "CLIENT_COMPETITION",
+      "columns": [
+        {
+          "logical_name": "기준발주처번호",
+          "physical_name": "CLIENT_ID_A",
+          "data_type": "BIGINT",
+          "nullable": false,
+          "primary_key": true,
+          "foreign_key": {
+            "table": "CLIENT",
+            "column": "CLIENT_ID",
+            "role": "CLIENT A"
+          }
+        },
+        {
+          "logical_name": "경쟁발주처번호",
+          "physical_name": "CLIENT_ID_B",
+          "data_type": "BIGINT",
+          "nullable": false,
+          "primary_key": true,
+          "foreign_key": {
+            "table": "CLIENT",
+            "column": "CLIENT_ID",
+            "role": "CLIENT B"
+          }
+        },
+        {
+          "logical_name": "등록일",
+          "physical_name": "REGISTERED_ON",
+          "data_type": "DATE",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "logical_name": "해제일",
+          "physical_name": "RELEASED_ON",
+          "data_type": "DATE",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "logical_name": "등록사유",
+          "physical_name": "REASON",
+          "data_type": "VARCHAR(200)",
+          "nullable": false,
+          "primary_key": false
+        }
+      ],
+      "primary_key": [
+        "CLIENT_ID_A",
+        "CLIENT_ID_B"
+      ],
+      "checks": [
+        {
+          "name": "CK_CLIENT_COMPETITION_ORDER",
+          "expression": "CLIENT_ID_A < CLIENT_ID_B"
+        },
+        {
+          "name": "CK_CLIENT_COMPETITION_DATES",
+          "expression": "RELEASED_ON IS NULL OR RELEASED_ON >= REGISTERED_ON"
+        }
+      ],
+      "null_meaning": {
+        "RELEASED_ON": "NULL = 현재 유효"
+      },
+      "relationships": [
+        {
+          "name": "경쟁기준",
+          "parent": "발주처",
+          "child": "발주처경쟁관계",
+          "parent_role": "CLIENT A",
+          "foreign_key_column": "CLIENT_ID_A",
+          "identifying": true,
+          "parent_cardinality": "1",
+          "child_cardinality": "0..N",
+          "parent_participation": "optional",
+          "child_participation": "mandatory"
+        },
+        {
+          "name": "경쟁상대",
+          "parent": "발주처",
+          "child": "발주처경쟁관계",
+          "parent_role": "CLIENT B",
+          "foreign_key_column": "CLIENT_ID_B",
+          "identifying": true,
+          "parent_cardinality": "1",
+          "child_cardinality": "0..N",
+          "parent_participation": "optional",
+          "child_participation": "mandatory"
+        }
+      ]
+    }
+  }
 }
