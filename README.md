@@ -59,6 +59,8 @@ docker compose up --build
 
 ## 설계 자료
 
+제출용 전체 속성 통합 PNG·상세 PNG와 프로젝트·데이터베이스 정의서 Excel은 [제출 자료 폴더](outputs/db-design-submission/)에 있습니다. 정의서의 조명·조원 칸은 제출 전 실제 팀 정보로 입력하세요.
+
 - [요구사항과 구현 범위](docs/requirements-mapping.md)
 - [시스템 구조](docs/architecture.md)
 - [실행·배포 설정](docs/deployment.md)
