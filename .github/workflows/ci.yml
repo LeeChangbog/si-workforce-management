@@ -67,3 +67,14 @@ jobs:
           COI003|가상개발자03|E물류|E물류 배송|2026-06-20|2026-06-30|F물류|F물류 창고|2026-06-25|2026-07-05|2026-06-25|2026-06-30
           EXPECTED
           diff -u competition-expected.txt competition-actual.txt
+      - name: Verify employee external careers on PostgreSQL
+        env:
+          POSTGRES_CONTAINER: ${{ job.services.postgres.id }}
+        run: |
+          docker exec -i "$POSTGRES_CONTAINER" psql -U ci_user -d workforce -v ON_ERROR_STOP=1 <<'SQL'
+          BEGIN;
+          INSERT INTO external_career (company_name, career_description, career_from, employee_id)
+          VALUES ('Demo employer', 'Developer career', DATE '2024-01-01', 'COI001'),
+                 ('Demo employer', 'Non-developer career', DATE '2024-01-01', 'COI-MGMT01');
+          ROLLBACK;
+          SQL

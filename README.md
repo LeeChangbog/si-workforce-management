@@ -8,6 +8,7 @@
 - Spring MVC + Thymeleaf 한국어 홈 화면
 - JdbcTemplate으로 사원·프로젝트·평가·휴가 신청 집계 및 프로젝트·발주처 조인 조회
 - Flyway: 26개 테이블, 33개 FK(일반 관계 28 + 하위 유형 상속 5), PK·UK·CHECK
+- 외부경력은 개발·비개발 공통 사원에 연결하며, 기존 DB는 V3 마이그레이션으로 FK를 변경
 - 경쟁 발주처의 동일 개발자 동시 투입 탐지 SQL, 선택 적재 데모(경쟁 3쌍·위반 3건), ERD
 - 로컬 H2 개발 설정, PostgreSQL 운영 설정, Dockerfile·Compose 및 GitHub Actions
 
@@ -32,7 +33,7 @@ PowerShell에서도 실행할 수 있습니다. `JAVA_HOME`에 설치된 JDK 경
 .\gradlew.bat test bootJar
 ```
 
-총 19개 테스트가 고아 FK, 로그인·참여 중복, 양수 연차 부여분, 평가상세 복합 PK, 휴가 처리자 선택성 및 경쟁 관계 제약·기간 경계·정상 겹침 허용·데모 위반 3건을 확인합니다. GitHub Actions는 PostgreSQL 17에서도 실제 마이그레이션, HTTP 기동, 정보 차단벽 데모 SQL과 탐지 결과를 확인합니다.
+총 21개 테스트가 고아 FK, 로그인·참여 중복, 양수 연차 부여분, 평가상세 복합 PK, 휴가 처리자 선택성, 개발·비개발 사원의 외부경력 등록 및 경쟁 관계 제약·기간 경계·정상 겹침 허용·데모 위반 3건을 확인합니다. GitHub Actions는 PostgreSQL 17에서도 실제 마이그레이션, HTTP 기동, 정보 차단벽 데모 SQL과 탐지 결과, 개발·비개발 사원의 외부경력 등록을 확인합니다.
 
 정보 차단벽 데모 실행과 성능 실험 계획은 [대표 시나리오](docs/scenarios/client-competition.md)를 참고합니다. 요청에 따라 V1에 테이블을 추가했으므로 새 DB 기준입니다. 이전 V1을 적용한 영속 DB는 Flyway checksum 불일치가 발생하며 별도 업그레이드 마이그레이션이 필요합니다.
 

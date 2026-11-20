@@ -83,6 +83,32 @@ class SchemaIntegrationTest {
     }
 
     @Test
+    void developerAndNonDeveloperMayHaveZeroOrSeveralExternalCareers() {
+        String developer = createEmployee();
+        jdbc.update("insert into developer(employee_id, tech_grade) values (?, 'SENIOR')", developer);
+        String nonDeveloper = createEmployee("NONDEV");
+        jdbc.update("insert into non_developer(employee_id, department_name) values (?, '경영관리')", nonDeveloper);
+
+        for (String employee : new String[]{developer, nonDeveloper}) {
+            assertThat(jdbc.queryForObject(
+                    "select count(*) from external_career where employee_id = ?", Integer.class, employee))
+                    .isZero();
+
+            insertExternalCareer(employee);
+            insertExternalCareer(employee);
+
+            assertThat(jdbc.queryForObject(
+                    "select count(*) from external_career where employee_id = ?", Integer.class, employee))
+                    .isEqualTo(2);
+        }
+    }
+
+    @Test
+    void externalCareerRejectsAnUnknownEmployee() {
+        assertIntegrityState(() -> insertExternalCareer("NO-SUCH-EMPLOYEE"), "23503", "23506");
+    }
+
+    @Test
     void annualLeaveGrantAcceptsPositiveMinutesAndRejectsNonpositiveAmounts() {
         var leave = createLeaveFixture();
         insertGrant(nextId(), leave, 480);
@@ -130,13 +156,26 @@ class SchemaIntegrationTest {
     }
 
     private String createEmployee() {
+        return createEmployee("DEV");
+    }
+
+    private String createEmployee(String employeeType) {
         String employee = employeeId();
         jdbc.update("""
                 insert into employee(employee_id, employee_name, resident_no, education,
                                      hired_on, login_id, password_hash, employee_type)
-                values (?, 'Integrity test employee', ?, 'BACHELOR', date '2026-01-01', ?, 'demo-hash', 'DEV')
-                """, employee, "FAKE-" + employee, "login_" + employee);
+                values (?, 'Integrity test employee', ?, 'BACHELOR', date '2026-01-01', ?, 'demo-hash', ?)
+                """, employee, "FAKE-" + employee, "login_" + employee, employeeType);
         return employee;
+    }
+
+    private void insertExternalCareer(String employee) {
+        jdbc.update("""
+                insert into external_career(career_id, company_name, career_description,
+                                            career_from, career_to, employee_id)
+                values (?, 'Previous employer', 'Accounting or development',
+                        date '2024-01-01', date '2025-12-31', ?)
+                """, nextId(), employee);
     }
 
     private Participant createParticipant() {

@@ -54,6 +54,7 @@ flowchart LR
 |---|---|
 | `V1__initial_schema.sql` | 루트 엔터티 21개와 직원·평가의 하위 유형 5개, 총 26개 테이블 생성. PK/FK/UNIQUE 및 행 단위 CHECK 정의 |
 | `V2__reference_data.sql` | 직무 6개, 평가항목 2개, 조회권한 2개 초기 적재 |
+| `V3__allow_external_careers_for_all_employees.sql` | 외부경력이력의 사번 FK를 개발직원에서 공통 사원으로 변경. 기존 경력 행과 사번은 보존하며 비개발직원도 외부경력 등록 가능 |
 
 실제 직원·프로젝트·평가·휴가 신청은 초기 마이그레이션에 포함하지 않는다. 첫 기동에서 홈의 집계가 0이고 프로젝트 목록이 비어 있는 상태는 정상이다. 정보 차단벽의 가상 데모 데이터는 `db/demo/client_competition_demo.sql`을 별도로 실행할 때만 적재한다.
 

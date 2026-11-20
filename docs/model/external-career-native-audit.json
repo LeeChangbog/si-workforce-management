@@ -1,0 +1,20 @@
+{
+  "verified_on": "2026-11-20",
+  "root_entity_count": 21,
+  "subtype_count": 5,
+  "ordinary_relation_count": 28,
+  "relation": "외부경력",
+  "old_parent": "개발직원",
+  "parent": "사원",
+  "child": "외부경력이력",
+  "fk": "EMPLOYEE_ID",
+  "identifying": false,
+  "parent_many": false,
+  "child_many": true,
+  "parent_mandatory": false,
+  "child_mandatory": true,
+  "all_entity_columns_preserved": true,
+  "other_27_relationships_preserved": true,
+  "saved_file_reopened_verified": true,
+  "visual_layout": "PNG/draw.io verified separately; native layout not screen-inspected"
+}

@@ -1,7 +1,7 @@
 """Generate editable diagrams.net pages and matching SVG/PNG ER diagrams locally."""
 from pathlib import Path
 from math import ceil, hypot
-import json, re, html, heapq
+import json, re, html, heapq, shutil
 import xml.etree.ElementTree as ET
 from PIL import Image, ImageDraw, ImageFont
 
@@ -82,7 +82,7 @@ PAGES=[
       positions=pos_grid([('권한',0,0),('사원권한',1,0),('사원',2,0),('비개발직원',3,0),
          ('기술',0,1),('직원보유기술',1,1),('개발직원',2,1),('외부경력이력',3,1),
          ('발주처',0,2),('프로젝트',1,2),('프로젝트참여',2,2),('직무수행이력',3,2),('고객담당자',0,3),('발주처경쟁관계',1,3),('직무',2,3)]),
-      notes=['사원 유형은 DEV / NONDEV 중 정확히 하나입니다. 개발직원만 프로젝트참여·기술·외부경력을 가집니다.',
+      notes=['사원 유형은 DEV / NONDEV 중 정확히 하나입니다. 프로젝트참여·기술은 개발직원 전용이며 외부경력은 모든 사원이 등록합니다.',
              'UNIQUE: 로그인ID, (사번·권한번호), (프로젝트번호·참여사번), (사번·기술번호). 실제 투입·직무와 과거 시점은 직무수행이력으로 조회합니다.']),
  dict(key='02_evaluation',title='프로젝트 평가 · 고객 의뢰 및 보고',overview=False,width=2020,height=2740,
       positions=pos_grid([('발주처',0,0),('고객담당자',1,0),('프로젝트',2,0),
@@ -212,10 +212,10 @@ class Canvas:
         if optional:self.circle(*q(28),5,color)
         else:self.line([q(18,-8),q(18,8)],color)
 
-def export_page(page,mxfile):
+def export_page(page,mxfile,png_only=None):
     rects,lines,edges=build(page);c=Canvas(page['width'],page['height'])
     c.text(70,32,page['title'],32,True)
-    subtitle=('SI 직원·프로젝트·평가·휴가 / 정보 차단벽 추가 2026-11-06'
+    subtitle=('SI 직원·프로젝트·평가·휴가 / 외부경력 공통 사원 적용 2026-11-20'
               if page['key'] in ('00_overview','01_staff_project')
               else 'SI 직원·프로젝트·평가·휴가 / 확정 논리설계 2026-11-04')
     c.text(70,82,subtitle,20,color='#64748b')
@@ -258,6 +258,9 @@ def export_page(page,mxfile):
     ny=page['height']-138;c.rect(60,ny,page['width']-120,108,'#f7f9fc','#cbd5e1',1)
     for i,note in enumerate(page['notes']):c.text(78,ny+12+i*28,note,18)
     c.text(78,ny+72,'관계: 부모 1 / 자식 0..N  ·  빈 원 = 선택  ·  상속 점선 1 : 0..1  ·  [NULL] = 선택 속성  ·  FK 역할명은 각 테이블에 표시',18,color='#64748b')
+    if png_only is not None:
+        c.im.save(png_only)
+        return
     (HERE/(page['key']+'.svg')).write_text('\n'.join(c.svg+['</svg>']),encoding='utf-8')
     c.im.save(HERE/(page['key']+'.png'))
     diagram=ET.SubElement(mxfile,'diagram',{'id':page['key'],'name':page['title']})
@@ -291,4 +294,12 @@ mxfile=ET.Element('mxfile',{'host':'app.diagrams.net','type':'device','version':
 for page in PAGES:export_page(page,mxfile)
 ET.indent(mxfile,space='  ')
 ET.ElementTree(mxfile).write(HERE/'SI_workforce_통합_ERD.drawio',encoding='utf-8',xml_declaration=True)
+submission=HERE.parents[1]/'outputs/db-design-submission'
+submission.mkdir(parents=True,exist_ok=True)
+full_page=dict(PAGES[0],overview=False,title='통합 ERD (전체 속성)',notes=[
+    '루트 엔터티 21개 + 하위 유형 5개 / 일반 관계 28개 + 상속 5개. 전체 속성과 FK 역할명을 표시합니다.',
+    '사원 유형은 완전배타입니다. 외부경력은 모든 사원이 등록하며 프로젝트참여·기술은 개발직원 전용입니다.'])
+assert set(full_page['positions']) == set(N), 'Submission ERD must include every entity.'
+export_page(full_page,mxfile,png_only=submission/'01_통합_ERD.png')
+shutil.copyfile(HERE/'01_staff_project.png',submission/'02_사원_프로젝트_ERD.png')
 print('DONE',flush=True)

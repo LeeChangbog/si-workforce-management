@@ -48,3 +48,9 @@ CHECK (RELEASED_ON IS NULL OR RELEASED_ON >= REGISTERED_ON)
 `model-definition.json`과 `../model/schema.json`은 같은 논리 모델이다. 기존 배열 구조는 유지하며, `entity_metadata.발주처경쟁관계`에 물리 타입·nullable·복합 PK·FK 역할·정확한 CHECK 식과 참여 제약을 명시했다. 기존 entities·relations·subtypes 항목은 변경하지 않고 새 항목만 덧붙였다.
 
 로컬 재생성: Python에서 `python docs/erd/generate_erd.py`를 실행한다(Pillow, Malgun Gothic 글꼴 필요). 생성기는 SVG·PNG·draw.io만 갱신하며 이 README의 수기 검증 기록을 덮어쓰지 않는다.
+
+## 외부경력 등록 대상 확대 (2026-11-20)
+
+외부경력이력의 사번 FK 부모를 개발직원에서 공통 사원으로 옮겼다. 개발·비개발 사원 모두 외부경력을 등록할 수 있다. 관계는 기존과 같이 비식별이며, 각 경력은 사원 1명을 필수 참조하고 사원은 경력 0..N개를 가질 수 있다. 나머지 관계·키·속성·카디널리티는 변경하지 않았다.
+
+JSON 두 파일, 업무별 SVG/PNG·draw.io 및 제출용 전체 속성 통합 PNG·사원/프로젝트 PNG를 동기화했다. `generate_erd.py` 실행 시 제출용 두 PNG도 함께 갱신한다. 기존 비식별 관계선 구분 문제는 이번 변경 범위에 포함하지 않았다. 배포 스키마는 V1을 보존하고 별도 V3 마이그레이션을 적용한다.
